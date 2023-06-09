@@ -1,25 +1,25 @@
 <template>
-  <div ref="parent" class="resizable-component" :style="style">
+  <div ref="parent" class="vue-resize-component" :style="style">
     <slot />
     <div
       v-for="el in active"
       v-show="!maximize"
       :key="el"
-      :class="'resizable-' + el"
+      :class="'vue-resize-' + el"
     />
   </div>
 </template>
 
 <script>
 const ELEMENT_MASK = {
-  "resizable-r": { bit: 0b0001, cursor: "e-resize" },
-  "resizable-rb": { bit: 0b0011, cursor: "se-resize" },
-  "resizable-b": { bit: 0b0010, cursor: "s-resize" },
-  "resizable-lb": { bit: 0b0110, cursor: "sw-resize" },
-  "resizable-l": { bit: 0b0100, cursor: "w-resize" },
-  "resizable-lt": { bit: 0b1100, cursor: "nw-resize" },
-  "resizable-t": { bit: 0b1000, cursor: "n-resize" },
-  "resizable-rt": { bit: 0b1001, cursor: "ne-resize" },
+  "vue-resize-r": { bit: 0b0001, cursor: "e-resize" },
+  "vue-resize-rb": { bit: 0b0011, cursor: "se-resize" },
+  "vue-resize-b": { bit: 0b0010, cursor: "s-resize" },
+  "vue-resize-lb": { bit: 0b0110, cursor: "sw-resize" },
+  "vue-resize-l": { bit: 0b0100, cursor: "w-resize" },
+  "vue-resize-lt": { bit: 0b1100, cursor: "nw-resize" },
+  "vue-resize-t": { bit: 0b1000, cursor: "n-resize" },
+  "vue-resize-rt": { bit: 0b1001, cursor: "ne-resize" },
   "drag-el": { bit: 0b1111, cursor: "pointer" },
 };
 
@@ -355,7 +355,7 @@ export default {
           diffY /= scaleY;
         }
         this.offsetX = this.offsetY = 0;
-        if (this.resizeState & ELEMENT_MASK["resizable-r"].bit) {
+        if (this.resizeState & ELEMENT_MASK["vue-resize-r"].bit) {
           if (!this.dragState && this.w + diffX < this.minW)
             this.offsetX = diffX - (diffX = this.minW - this.w);
           else if (
@@ -374,7 +374,7 @@ export default {
 
           this.calcMap & CALC_MASK.w && (this.w += this.dragState ? 0 : diffX);
         }
-        if (this.resizeState & ELEMENT_MASK["resizable-b"].bit) {
+        if (this.resizeState & ELEMENT_MASK["vue-resize-b"].bit) {
           if (!this.dragState && this.h + diffY < this.minH)
             this.offsetY = diffY - (diffY = this.minH - this.h);
           else if (
@@ -393,7 +393,7 @@ export default {
 
           this.calcMap & CALC_MASK.h && (this.h += this.dragState ? 0 : diffY);
         }
-        if (this.resizeState & ELEMENT_MASK["resizable-l"].bit) {
+        if (this.resizeState & ELEMENT_MASK["vue-resize-l"].bit) {
           if (!this.dragState && this.w - diffX < this.minW)
             this.offsetX = diffX - (diffX = this.w - this.minW);
           else if (
@@ -409,7 +409,7 @@ export default {
           this.calcMap & CALC_MASK.l && (this.l += diffX);
           this.calcMap & CALC_MASK.w && (this.w -= this.dragState ? 0 : diffX);
         }
-        if (this.resizeState & ELEMENT_MASK["resizable-t"].bit) {
+        if (this.resizeState & ELEMENT_MASK["vue-resize-t"].bit) {
           if (!this.dragState && this.h - diffY < this.minH)
             this.offsetY = diffY - (diffY = this.h - this.minH);
           else if (
@@ -434,7 +434,7 @@ export default {
     handleDown(event) {
       if (
         event.target.closest &&
-        event.target.closest(".resizable-component") !== this.$refs["parent"]
+        event.target.closest(".vue-resize-component") !== this.$refs["parent"]
       )
         return;
       for (let elClass in ELEMENT_MASK) {
@@ -477,11 +477,11 @@ export default {
 </script>
 
 <style scoped>
-.resizable-component {
+.vue-resize-component {
   position: relative;
 }
 
-.resizable-component > .resizable-r {
+.vue-resize-component > .vue-resize-r {
   display: block;
   position: absolute;
   z-index: 90;
@@ -496,7 +496,7 @@ export default {
   height: 100%;
 }
 
-.resizable-component > .resizable-rb {
+.vue-resize-component > .vue-resize-rb {
   display: block;
   position: absolute;
   touch-action: none;
@@ -511,7 +511,7 @@ export default {
   z-index: 91;
 }
 
-.resizable-component > .resizable-b {
+.vue-resize-component > .vue-resize-b {
   display: block;
   position: absolute;
   z-index: 90;
@@ -526,7 +526,7 @@ export default {
   left: 0;
 }
 
-.resizable-component > .resizable-lb {
+.vue-resize-component > .vue-resize-lb {
   display: block;
   position: absolute;
   touch-action: none;
@@ -541,7 +541,7 @@ export default {
   z-index: 91;
 }
 
-.resizable-component > .resizable-l {
+.vue-resize-component > .vue-resize-l {
   display: block;
   position: absolute;
   z-index: 90;
@@ -556,7 +556,7 @@ export default {
   top: 0;
 }
 
-.resizable-component > .resizable-lt {
+.vue-resize-component > .vue-resize-lt {
   display: block;
   position: absolute;
   touch-action: none;
@@ -571,7 +571,7 @@ export default {
   z-index: 91;
 }
 
-.resizable-component > .resizable-t {
+.vue-resize-component > .vue-resize-t {
   display: block;
   position: absolute;
   z-index: 90;
@@ -586,7 +586,7 @@ export default {
   left: 0;
 }
 
-.resizable-component > .resizable-rt {
+.vue-resize-component > .vue-resize-rt {
   display: block;
   position: absolute;
   touch-action: none;
