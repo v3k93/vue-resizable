@@ -31,7 +31,7 @@ const CALC_MASK = {
 };
 
 export default {
-  name: "VResizable",
+  name: "VueResizable",
   props: {
     width: {
       default: undefined,
