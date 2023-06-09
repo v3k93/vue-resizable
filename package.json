@@ -31,9 +31,9 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/nikitasnv/vue-resizable.git"
+    "url": "https://github.com/v3k93/vue-resizable.git"
   },
-  "homepage": "https://github.com/nikitasnv/vue-resizable",
+  "homepage": "https://github.com/v3k93/vue-resizable",
   "keywords": [
     "vue",
     "component",
